@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const API_BASE_URL = 'https://ven05366.service-now.com/api';
 const API_USER = import.meta.env.VITE_API_USER;
-const API_PASS = import.meta.env.VITE_API_PASS.replace(/^"|"$/g, '');
+const API_PASS = import.meta.env.VITE_API_PASS;
 
 function getBasicAuthHeader(user: any, pass: any) {
   const token = btoa(`${user}:${pass}`);
