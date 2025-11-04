@@ -69,18 +69,13 @@ export default function TicketModal({ ticket, onClose, isLoading = false }) {
                 {/* Ticket Type */}
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                                        <Ticket className="w-4 h-4 text-red-500" />
-
+                    <Ticket className="w-4 h-4 text-red-500" />
                     <span className="text-xs font-medium text-gray-500">
                       Ticket ID
                     </span>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
-                    {ticket.id
-                      ? ticket.id.length > 6
-                        ? ` ${ticket.id.slice(0, 10)}...`
-                        : ticket.id
-                      : "No ticket id found"}
+                    {ticket?.id || "No ticket id found"}
                   </p>
                 </div>
 

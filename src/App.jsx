@@ -72,7 +72,7 @@ function App() {
   return (
     <Layout>
       <div className="relative">
-        <div className="px-2">
+        <div className="px-1">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Tickets</h1>
 
           {loading && (
