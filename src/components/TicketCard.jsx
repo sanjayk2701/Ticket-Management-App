@@ -22,14 +22,27 @@ export default function TicketCard({ ticket, onClick }) {
             </p>
         </div> */}
 
-        <div>
+        {/* <div>
           <div className="flex items-center gap-2 mb-1">
             <Ticket className="w-4 h-4 text-red-500" />
 
             <span className="text-xs font-medium text-gray-500">Ticket ID</span>
           </div>
           <p className="text-lg font-medium text-gray-900">{ticket.id}</p>
+        </div> */}
+
+        <div className="flex flex-col">
+          <div className="flex items-center gap-2">
+            <Ticket className="w-4 h-4 text-orange-500" />
+            <span className="text-xs font-medium text-gray-500">
+              Ticket ID
+            </span>
+          </div>
+          <p className="text-md font-medium text-gray-900 mt-1 ml-1 break-all">
+            {ticket.id}
+          </p>
         </div>
+
 
         {/* Row: Issue Start Date, Severity */}
         <div className="flex flex-wrap items-start justify-between gap-4 text-gray-600">
