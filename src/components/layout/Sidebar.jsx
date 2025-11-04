@@ -3,8 +3,7 @@ import { Home, Ticket, Settings, X } from 'lucide-react';
 export default function Sidebar({ isOpen, onClose }) {
   const menuItems = [
     { icon: Home, label: 'Dashboard', active: true },
-    { icon: Ticket, label: 'Tickets', active: false },
-    { icon: Settings, label: 'Settings', active: false },
+   
   ];
 
   return (
