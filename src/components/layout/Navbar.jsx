@@ -2,7 +2,7 @@ import { Menu } from 'lucide-react';
 
 export default function Navbar({ onToggleSidebar }) {
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-30 h-16">
+    <nav className="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-30 h-12">
       <div className="flex items-center justify-between h-full px-4">
         <div className="flex items-center gap-4">
           <button

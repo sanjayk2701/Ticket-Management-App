@@ -18,6 +18,9 @@ import {
 export default function TicketModal({ ticket, onClose, isLoading = false }) {
   if (!ticket && !isLoading) return null;
 
+  console.log(ticket, "ticketDetails");
+
+
   const getRoleLabel = (role) => {
     return role
       .split("_")
@@ -74,9 +77,28 @@ export default function TicketModal({ ticket, onClose, isLoading = false }) {
                       Ticket ID
                     </span>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {ticket?.id || "No ticket id found"}
-                  </p>
+                  <div className="relative group w-fit max-w-[120px]">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {ticket?.ticketId
+                        ? `${ticket.ticketId.slice(0, 8)}${ticket.ticketId.length > 8 ? "..." : ""}`
+                        : "No ticket id found"}
+                    </p>
+
+                    {/* Tooltip (Top Right) */}
+                    {ticket?.ticketId?.length > 8 && (
+                      <span
+                        className="absolute left-16 bottom-full mb-1
+                 opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                 bg-gray-900 text-white text-xs rounded-md px-2 py-1 whitespace-nowrap
+                 z-10 shadow-md"
+                      >
+                        {ticket.ticketId}
+                      </span>
+                    )}
+                  </div>
+
+
+
                 </div>
 
                 {/* Priority */}
@@ -179,7 +201,7 @@ export default function TicketModal({ ticket, onClose, isLoading = false }) {
                 {/* Type */}
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                                        <Calendar className="w-4 h-4 text-green-500" />
+                    <Calendar className="w-4 h-4 text-green-500" />
 
                     <span className="text-xs font-medium text-gray-500">
                       Expected Resolved Date
@@ -193,7 +215,7 @@ export default function TicketModal({ ticket, onClose, isLoading = false }) {
                 {/* Impact */}
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                                        <Calendar className="w-4 h-4 text-purple-500" />
+                    <Calendar className="w-4 h-4 text-purple-500" />
                     <span className="text-xs font-medium text-gray-500">
                       Last Update
                     </span>

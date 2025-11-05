@@ -29,6 +29,9 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tickets.length]);
 
+  console.log(selectedTicket,"selectedTicket");
+  
+
   const fetchTickets = async () => {
     try {
       setLoading(true);
@@ -45,11 +48,14 @@ function App() {
   };
 
   const handleCardClick = async (ticket) => {
+    
     setSelectedTicket(ticket);
     setModalLoading(true);
     try {
       const detailedTicket = await ticketService.getTicketById(ticket.id);
-      setSelectedTicket(detailedTicket);
+      // setSelectedTicket(detailedTicket);
+          setSelectedTicket({ ...detailedTicket, ticketId: ticket.ticketId || ticket.id });
+
     } catch (err) {
       console.error("Failed to fetch ticket details:", err);
     } finally {
@@ -70,10 +76,15 @@ function App() {
   };
 
   return (
-    <Layout>
+    <Layout
+    currentPage={currentPage}
+  totalPages={totalPages}
+  onPageChange={handlePageChange}
+    
+    >
       <div className="relative">
         <div className="px-1">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Tickets</h1>
+          {/* <h1 className="text-2xl font-bold text-gray-900 mb-2">Tickets</h1> */}
 
           {loading && (
             <div className="flex items-center justify-center min-h-96">
@@ -115,46 +126,7 @@ function App() {
               </div>
 
               {/* Fixed Pagination (bottom-right) */}
-              <div
-                className="fixed bottom-6 right-6 flex items-center gap-2 bg-white px-3 py-2 rounded-lg z-50"
-                role="navigation"
-                aria-label="Pagination"
-              >
-                <button
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className="px-3 py-1 rounded-md text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50"
-                >
-                  Previous
-                </button>
-
-                {/* page numbers */}
-                <div className="flex gap-1 max-w-[240px] overflow-x-auto px-1">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                    (page) => (
-                      <button
-                        key={page}
-                        onClick={() => handlePageChange(page)}
-                        className={`px-3 py-1 text-sm rounded-md whitespace-nowrap ${
-                          currentPage === page
-                            ? "bg-indigo-600 text-white"
-                            : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    )
-                  )}
-                </div>
-
-                <button
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className="px-3 py-1 rounded-md text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50"
-                >
-                  Next
-                </button>
-              </div>
+             
             </>
           )}
         </div>

@@ -10,7 +10,7 @@ export default function TicketCard({ ticket, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 cursor-pointer hover:shadow-md transition-shadow"
+      className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 cursor-pointer hover:shadow-md transition-shadow"
     >
       <div className="space-y-4">
         {/* Ticket ID */}
